@@ -1,0 +1,17 @@
+p {
+color: black;
+}
+
+#main {
+    display: grid;
+    justify-content: start;
+    width: 70px;
+    height: 300px;
+    border: 1rem solid dimgray;
+}
+
+#main div {
+    width: 70px;
+    height: 70px;
+}
+

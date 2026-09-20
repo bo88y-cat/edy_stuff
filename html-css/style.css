@@ -1,0 +1,17 @@
+#btn {
+    color: red;
+    background-color: blue;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-image: linear-gradient(to bottom, black, orange); /* red to yellow */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* ensures gradient stays full-page on scroll */
+}
+
+h1 {
+    color: white;
+    font-family: sans-serif;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset="UTF-8"> <link rel="stylesheet" href="all-style.css">
+    <title>telegram</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1>telegram</h1>
+        <span>
+            <div class="acc-conteiner">
+                <div></div>
+            </div>
+            <button id="log-in">Log in</button>
+        </span>
+    </header>
+    <dialog id="dialog-id">
+        <form action="">
+            <div>
+                <label for="">Enter name:</label>
+                <br>
+                <input id="name-id" type="text" placeholder="enter name">
+            </div>
+            <button type="submit">Ok (temporary)</button>
+        </form>
+    </dialog>
+
+    <br>
+    <input type="text" name="name" value="hello to HTML!">
+    <button id="btn-1" onclick="alert('sended!')">^</button>
+</body>
+
+<script>
+    const loginButton = document.getElementById('log-in');
+    const dialogBtn = document.getElementById('dialog-id')
+    let dialogToggeled = false;
+
+    loginButton.addEventListener('click', () => {
+
+        if (dialogBtn.getAttribute('open') === null) {
+            dialogBtn.setAttribute('open', true)
+            loginButton.innerText = "Log out";
+            dialogToggeled = true;
+        } else {
+            toggleLogin();
+        }
+    })
+
+    function toggleLogin() {
+        dialogBtn.removeAttribute('open');
+        loginButton.innerText = "pls log in"
+    }
+</script>
+
+</html>

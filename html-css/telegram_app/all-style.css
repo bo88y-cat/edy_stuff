@@ -1,0 +1,18 @@
+h1 {
+    font-family: sans-serif;
+    color: white;
+}
+
+#btn-1 {
+    border-radius: 50%;
+    background-color: rgb(102, 173, 214);
+    cursor: pointer;
+}
+body {
+  background-color: rgb(0, 0, 0);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}

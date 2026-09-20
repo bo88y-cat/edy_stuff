@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kraken | Crypto Trading & Exchange</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #0b0e14;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 48px;
+            background-color: rgba(11, 14, 20, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #7b2cbf, #5a189a);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: #9ba3af;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-primary {
+            background: #5850ec;
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+            box-shadow: 0 4px 12px rgba(88, 80, 236, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            gap: 40px;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #9ca3af;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .cta-group input {
+            padding: 14px 18px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 15px;
+            width: 280px;
+            outline: none;
+        }
+
+        .cta-group input:focus {
+            border-color: #5850ec;
+        }
+
+        /* Visual Element */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(88, 80, 236, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 1;
+        }
+
+        .card-preview {
+            position: relative;
+            z-index: 2;
+            background: rgba(22, 27, 38, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 40px rgba(54, 6, 68, 0.5);
+            backdrop-filter: blur(20px);
+        }
+
+        /* Market Ticker Section */
+        .markets {
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            width: 100%;
+            padding: 0 24px;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .crypto-card {
+            background: #121721;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .crypto-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .coin-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .coin-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btc {
+            background: #f7931a;
+            color: #fff;
+        }
+
+        .eth {
+            background: #627eea;
+            color: #fff;
+        }
+
+        .sol {
+            background: #14f195;
+            color: #000;
+        }
+
+        .coin-name {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .coin-symbol {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .coin-price {
+            text-align: right;
+        }
+
+        .price-value {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .price-change {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .positive {
+            color: #10b981;
+        }
+
+        .negative {
+            color: #ef4444;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 40px 24px;
+            }
+
+            .hero-content p {
+                margin: 0 auto 32px auto;
+            }
+
+            .cta-group {
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .cta-group input {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            header {
+                padding: 16px 20px;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <a href="#" class="brand">
+            <div class="brand-icon">🐙</div>
+            kraken
+        </a>
+        <nav>
+            <a href="#">Trade</a>
+            <a href="#">Explore</a>
+            <a href="#">Earn</a>
+            <a href="#">Learn</a>
+            <a href="#">Institution</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="#" class="btn btn-secondary">Log In</a>
+            <a href="#" class="btn btn-primary">Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Own your financial future</h1>
+            <p>Buy, sell, and margin trade Bitcoin and Ethereum securely with low fees and industry-leading security.
+            </p>
+            <div class="cta-group">
+                <input type="email" placeholder="Enter your email address" />
+                <a href="#" class="btn btn-primary" style="padding: 14px 28px; font-size: 15px;">Get Started</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="glow"></div>
+            <div class="card-preview">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                    <span style="color: #9ca3af; font-size: 14px;">Portfolio Value</span>
+                    <span style="color: #10b981; font-size: 14px; font-weight: 600;">+12.4%</span>
+                </div>
+                <div style="font-size: 32px; font-weight: 800; margin-bottom: 24px;">$48,291.50</div>
+
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div
+                        style="display: flex; justify-content: space-between; font-size: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <span>Bitcoin (BTC)</span>
+                        <span style="font-weight: 600;">0.64 BTC</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                        <span>Ethereum (ETH)</span>
+                        <span style="font-weight: 600;">4.20 ETH</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Markets Section -->
+    <section class="markets">
+        <div class="market-grid">
+            <!-- Bitcoin -->
+            <div class="crypto-card">
+                <div class="coin-info">
+                    <div class="coin-icon btc">₿</div>
+                    <div>
+                        <div class="coin-name">Bitcoin</div>
+                        <div class="coin-symbol">BTC</div>
+                    </div>
+                </div>
+                <div class="coin-price">
+                    <div class="price-value">$96,300.00</div>
+                    <div class="price-change positive">+2.45%</div>
+                </div>
+            </div>
+
+            <!-- Ethereum -->
+            <div class="crypto-card">
+                <div class="coin-info">
+                    <div class="coin-icon eth">Ξ</div>
+                    <div>
+                        <div class="coin-name">Ethereum</div>
+                        <div class="coin-symbol">ETH</div>
+                    </div>
+                </div>
+                <div class="coin-price">
+                    <div class="price-value">$2,740.50</div>
+                    <div class="price-change positive">+1.82%</div>
+                </div>
+            </div>
+
+            <!-- Solana -->
+            <div class="crypto-card">
+                <div class="coin-info">
+                    <div class="coin-icon sol">S</div>
+                    <div>
+                        <div class="coin-name">Solana</div>
+                        <div class="coin-symbol">SOL</div>
+                    </div>
+                </div>
+                <div class="coin-price">
+                    <div class="price-value">$198.20</div>
+                    <div class="price-change negative">-0.65%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

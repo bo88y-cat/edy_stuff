@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>html notepad</title>
+</head>
+<style>
+    textarea {
+        resize: both;
+        overflow: auto;
+        border: 1px solid black;
+        width: 50rem;
+        height: 15rem;
+    }
+    dialog {
+        color: rgb(145, 134, 134);
+    }
+</style>
+
+<head>
+    <h1>html notepad</h1>
+    <p>a <strong>notepad</strong> that is a html editor</p>
+    <textarea id="area" name="name" placeholder="type html code here. . ."></textarea>
+    <dialog id="text" popover="auto" closedby="any">!DOCTYPE html</dialog>
+</head>
+<body>
+    <script>
+var input = document.getElementById("area");
+var text = document.getElementById("text");
+
+input.addEventListener("keyup", function(event) {
+
+if (event.getModifierState("CapsLock")) {
+    text.showModal();
+  }
+  
+});
+</script>
+</body>
